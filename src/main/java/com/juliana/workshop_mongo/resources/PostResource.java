@@ -3,6 +3,7 @@ package com.juliana.workshop_mongo.resources;
 import com.juliana.workshop_mongo.domain.Post;
 import com.juliana.workshop_mongo.domain.User;
 import com.juliana.workshop_mongo.dto.UserDTO;
+import com.juliana.workshop_mongo.resources.util.URL;
 import com.juliana.workshop_mongo.services.PostService;
 import com.juliana.workshop_mongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class PostResource {
     public ResponseEntity<Post> findById(@PathVariable String id) {
         Post obj = postService.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+    @RequestMapping(value="/titlesearch", method=RequestMethod.GET)
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="text", defaultValue="") String text) {
+        text = URL.decodeParam(text);
+        List<Post> list = postService.findByTitle(text);
+        return ResponseEntity.ok().body(list);
     }
 }
