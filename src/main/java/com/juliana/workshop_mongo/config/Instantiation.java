@@ -2,6 +2,7 @@ package com.juliana.workshop_mongo.config;
 
 import com.juliana.workshop_mongo.domain.Post;
 import com.juliana.workshop_mongo.domain.User;
+import com.juliana.workshop_mongo.dto.AuthorDTO;
 import com.juliana.workshop_mongo.repositories.PostRepository;
 import com.juliana.workshop_mongo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,17 @@ public class Instantiation implements CommandLineRunner {
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userRepository.deleteAll();
+        postRepository.deleteAll();
+
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post p1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou pra SP, bjo", maria);
-        Post p2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
-        postRepository.saveAll(Arrays.asList(p1, p2));
+
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+
+        postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
