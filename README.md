@@ -23,19 +23,11 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 Siga os passos abaixo para configurar o projeto no seu ambiente de execução:
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/jjgirotto/sistema-gestao-estacionamento.git
+git clone https://github.com/jjgirotto/workshop-spring-mongo.git
 ```
 3. **Execute o projeto**
 
 Para executar o projeto no IntelliJ, use `Alt + F10` ou Run as Java Project no Eclipse.
-
-4. **Acesse o bando de dados**
-
-
-
-### Estrutura do Projeto
-
-
 
 ### Contato
 
